@@ -26,9 +26,14 @@ int main(void)
 		i = strlen(buff);
 		buff[i - 1] = '\0';
 		argv[0] = buff;
-		val = execve(argv[0], argv, NULL);
-		if (val == -1)
-			perror("./shell");
+		if (fork() != 0)
+			wait(NULL);
+		else
+		{
+			val = execve(argv[0], argv, NULL);
+			if (val == -1)
+				perror("./shell");
+		}
 	}
 	printf("Done with execve\n");
 	free(buff);
