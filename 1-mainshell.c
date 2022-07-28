@@ -15,9 +15,11 @@ int main(void)
 {
 	int val;
 	int i;
-	char *argv[] = {" ", "-1", NULL};
+	char *argv[10];
 	size_t n = 10;
 	char *buff = NULL;
+	char *delim = " ";
+	char *token;
 
 	while (1)
 	{
@@ -25,7 +27,17 @@ int main(void)
 		getline(&buff, &n, stdin);
 		i = strlen(buff);
 		buff[i - 1] = '\0';
-		argv[0] = buff;
+		char *str = malloc(sizeof(char) * strlen(buff));
+
+		strcpy(str, buff);
+		token = strtok (str, delim);
+		argv[0] = token;
+		i = 1;
+		while (token)
+		{
+			token = strtok(NULL, delim);
+			argv[i++] = token;
+		}
 		if (fork() != 0)
 			wait(NULL);
 		else
