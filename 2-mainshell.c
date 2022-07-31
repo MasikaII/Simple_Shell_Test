@@ -16,10 +16,12 @@ int main(void)
 	int val;
 	int i;
 	char *argv[10];
+	char *path;
 	size_t n = 10;
 	char *buff = NULL;
-	char *delim = " \t\r\n\a";
+	char *delim = " ";
 	char *token;
+	char cmd[100];
 
 	while (1)
 	{
@@ -38,11 +40,20 @@ int main(void)
 			token = strtok(NULL, delim);
 			argv[i++] = token;
 		}
+		strcpy (cmd, argv[0]);
+		path = argv[0];
+		token = strtok (path, "/");
+printf("\n%s\n", token);
+		if (token != (char *)"bin")
+		{
+			strcpy (cmd, "/bin/");
+			strcat (cmd, argv[0]);
+		}
 		if (fork() != 0)
 			wait(NULL);
 		else
 		{
-			val = execvp(argv[0], argv);
+			val = execve(cmd, argv, NULL);
 			if (val == -1)
 				perror("./shell");
 		}
