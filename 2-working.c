@@ -19,7 +19,7 @@ int main(void)
 	char *path;
 	size_t n = 10;
 	char *buff = NULL;
-	char *delim = " /bin/";
+	char *delim = " /";
 	char *token;
 	char cmd[100];
 
@@ -40,14 +40,19 @@ int main(void)
 			token = strtok(NULL, delim);
 			argv[i++] = token;
 		}
-		strcpy (cmd, argv[0]);
+/**		strcpy (cmd, argv[0]);
 		path = argv[0];
-		token = strtok (path, " /");
-printf("\n%s\n", argv[0]);
-		if (token != "bin")
+		token = strtok (path, "/");
+**/printf("\n%s\n", argv[1]);
+		if (argv[0] != "bin")
 		{
 			strcpy (cmd, "/bin/");
 			strcat (cmd, argv[0]);
+		}
+		else
+		{
+			strcpy (cmd, "/bin/");
+			strcat (cmd, argv[1]);
 		}
 		if (fork() != 0)
 			wait(NULL);
