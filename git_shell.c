@@ -22,7 +22,7 @@
  */
 int lsh_cd(char **args);
 int lsh_help(char **args);
-int lsh_exit(char **args);
+int lsh_(char **args);
 
 /*
   List of builtin commands, followed by their corresponding functions.
@@ -30,13 +30,13 @@ int lsh_exit(char **args);
 char *builtin_str[] = {
   "cd",
   "help",
-  "exit"
+  ""
 };
 
 int (*builtin_func[]) (char **) = {
   &lsh_cd,
   &lsh_help,
-  &lsh_exit
+  &lsh_
 };
 
 int lsh_num_builtins() {
@@ -85,11 +85,11 @@ int lsh_help(char **args)
 }
 
 /**
-   @brief Builtin command: exit.
+   @brief Builtin command: .
    @param args List of args.  Not examined.
    @return Always returns 0, to terminate execution.
  */
-int lsh_exit(char **args)
+int lsh_(char **args)
 {
   return 0;
 }
@@ -110,7 +110,7 @@ int lsh_launch(char **args)
     if (execvp(args[0], args) == -1) {
       perror("lsh");
     }
-    exit(EXIT_FAILURE);
+    (EXIT_FAILURE);
   } else if (pid < 0) {
     // Error forking
     perror("lsh");
@@ -118,7 +118,7 @@ int lsh_launch(char **args)
     // Parent process
     do {
       waitpid(pid, &status, WUNTRACED);
-    } while (!WIFEXITED(status) && !WIFSIGNALED(status));
+    } while (!WIFED(status) && !WIFSIGNALED(status));
   }
 
   return 1;
@@ -158,10 +158,10 @@ char *lsh_read_line(void)
   ssize_t bufsize = 0; // have getline allocate a buffer for us
   if (getline(&line, &bufsize, stdin) == -1) {
     if (feof(stdin)) {
-      exit(EXIT_SUCCESS);  // We received an EOF
+      (EXIT_SUCCESS);  // We received an EOF
     } else  {
       perror("lsh: getline\n");
-      exit(EXIT_FAILURE);
+      (EXIT_FAILURE);
     }
   }
   return line;
@@ -174,7 +174,7 @@ char *lsh_read_line(void)
 
   if (!buffer) {
     fprintf(stderr, "lsh: allocation error\n");
-    exit(EXIT_FAILURE);
+    (EXIT_FAILURE);
   }
 
   while (1) {
@@ -182,7 +182,7 @@ char *lsh_read_line(void)
     c = getchar();
 
     if (c == EOF) {
-      exit(EXIT_SUCCESS);
+      (EXIT_SUCCESS);
     } else if (c == '\n') {
       buffer[position] = '\0';
       return buffer;
@@ -197,7 +197,7 @@ char *lsh_read_line(void)
       buffer = realloc(buffer, bufsize);
       if (!buffer) {
         fprintf(stderr, "lsh: allocation error\n");
-        exit(EXIT_FAILURE);
+        (EXIT_FAILURE);
       }
     }
   }
@@ -219,7 +219,7 @@ char **lsh_split_line(char *line)
 
   if (!tokens) {
     fprintf(stderr, "lsh: allocation error\n");
-    exit(EXIT_FAILURE);
+    (EXIT_FAILURE);
   }
 
   token = strtok(line, LSH_TOK_DELIM);
@@ -234,7 +234,7 @@ char **lsh_split_line(char *line)
       if (!tokens) {
 		free(tokens_backup);
         fprintf(stderr, "lsh: allocation error\n");
-        exit(EXIT_FAILURE);
+        (EXIT_FAILURE);
       }
     }
 
@@ -279,6 +279,6 @@ int main(int argc, char **argv)
 
   // Perform any shutdown/cleanup.
 
-  return EXIT_SUCCESS;
+  return _SUCCESS;
 }
 

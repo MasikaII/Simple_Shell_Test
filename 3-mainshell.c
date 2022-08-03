@@ -5,24 +5,26 @@
 #include <stdlib.h>
 #include <sys/wait.h>
 
+int sh_exit(void)
+{
+	exit;
+}
 /**
  * main - Shell Main Function
  *
  * Return: Integer Value
  */
-
 int main(void)
 {
 	int val;
 	int i;
 	char *argv[10];
-	char *path;
+	char *path = "bin";
 	size_t n = 10;
 	char *buff = NULL;
 	char *delim = " /";
 	char *token;
 	char cmd[100];
-
 	while (1)
 	{
 		printf("#Ace-;)$ ");
@@ -41,16 +43,19 @@ int main(void)
 			argv[i++] = token;
 		}
 printf("\n%s\n", argv[1]);
-		if (argv[0] == "bin")
-		{
-			strcpy (cmd, "/bin/");
-			strcat (cmd, argv[1]);
-		}
-		else
+		if (argv[0] == "exit")
+			sh_exit();
+		if (argv[0] !=  "bin")
 		{
 			strcpy (cmd, "/bin/");
 			strcat (cmd, argv[0]);
 		}
+		else 
+		{
+/**			strcpy (cmd, "/bin/");
+**/			strcat (cmd, argv[2]);
+		}
+printf("\n%s\n", cmd);
 		if (fork() != 0)
 			wait(NULL);
 		else
