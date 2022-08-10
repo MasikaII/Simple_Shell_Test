@@ -1,4 +1,4 @@
-#ifndef SHELL_H
+int _strlen(char *s)int _strlen(char *s)int _strlen(char *s)#ifndef SHELL_H
 #define SHELL_H
 
 #include <sys/wait.h>
