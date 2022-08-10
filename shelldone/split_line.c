@@ -2,9 +2,9 @@
 #define SHELL_TOK_BUFSIZE 64
 #define SHELL_TOK_DELIM " \t\r\n\a"
 /**
- * shell_split_line -  Split a line into tokens (very naively).
+ * **shell_split_line -  Split a line into tokens (very naively).
  * @line: String input from stdin.
- * return: Null-terminated array of tokens.
+ * Return: Null-terminated array of tokens.
  */
 char **shell_split_line(char *line)
 {
