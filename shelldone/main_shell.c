@@ -43,7 +43,7 @@ int shell_execute(char **args)
 	int i;
 
 	if (args[0] == NULL)
-	// An empty command was entered.
+	/* An empty command was entered. */
 	return (1);
 
 	for (i = 0; i < shell_num_builtins(); i++)
@@ -56,7 +56,6 @@ int shell_execute(char **args)
 
 /**
  * shell_num_builtins - Builtin command: .
- * @args: List of args.  Not examined.
  * Return: Always returns 0, to terminate execution.
  */
 int shell_num_builtins(void)
