@@ -1,7 +1,7 @@
 #include "shell.h"
 /**
- * shell_read_line - Read a line of input from stdin.
- * @return: The line from stdin.
+ * *shell_read_line - Read a line of input from stdin.
+ * Return: The line from stdin.
  */
 char *shell_read_line(void)
 {
@@ -19,7 +19,7 @@ char *shell_read_line(void)
 
 	while (1)
 	{
-	// Read a character
+	/* Read a character */
 	c = getchar();
 	if (c == EOF)
 		exit(EXIT_SUCCESS);
@@ -32,7 +32,7 @@ char *shell_read_line(void)
 		buffer[position] = c;
 	position++;
 
-	// If we have exceeded the buffer, reallocate.
+	/* If we have exceeded the buffer, reallocate. */
 	if (position >= bufsize)
 	{
 		bufsize += SHELL_RL_BUFSIZE;
