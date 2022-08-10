@@ -25,7 +25,7 @@ void read_command (char cmd[], char *par[])
         pch = strtok(NULL, " \n");
     }
     strcpy(cmd, array[0]);
-    
+g   
     for (; j < i; j++)
         par[j] = array[j];
     par[i] = NULL;
