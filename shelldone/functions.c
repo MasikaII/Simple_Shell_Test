@@ -7,7 +7,7 @@
 int shell_cd(char **args)
 {
 	if (args[1] == NULL)
-		write(1, "./shell: expected argument to \"cd\"\n", 38);
+		write(1, "./shell: expected argument to \"cd\"\n", 35);
 	else
 	{
 		if (chdir(args[1]) != 0)
