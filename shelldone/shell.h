@@ -9,9 +9,6 @@
 #include <string.h>
 
 
-/**
- * Function Declarations for builtin shell commands:
-**/
 int shell_cd(char **args);
 int shell_help(char **args);
 int shell_exit(char **args);
@@ -22,7 +19,7 @@ int shell_launch(char **args);
 int shell_(char **args);
 int shell_help(char **args);
 int shell_cd(char **args);
-int shell_num_builtins();
+int shell_num_builtins(void);
 int _strcmp(char *s1, char *s2);
 char *_strcpy(char *dest, char *src);
 int _strlen(char *s);
